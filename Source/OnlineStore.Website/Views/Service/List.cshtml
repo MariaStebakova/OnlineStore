@@ -1,0 +1,18 @@
+﻿@using OnlineStore.Website.Models
+@using OnlineStore.Website.HtmlHelpers
+@model ServicesListViewModel
+
+@{
+	ViewBag.Title = "Доступные услуги";
+}
+
+@foreach (var p in @Model.Services)
+{
+	@Html.Partial("ServiceSummary", p)
+}
+
+<div class="btn-group pull-right">
+	@Html.PageLinks(Model.PagingInfo, x => Url.Action("List", 
+		new { page = x, category = Model.CurrentCategory }))
+</div>
+
