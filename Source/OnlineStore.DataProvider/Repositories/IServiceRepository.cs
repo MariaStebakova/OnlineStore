@@ -10,5 +10,7 @@ namespace OnlineStore.DataProvider.Repositories
     public interface IServiceRepository
     {
         IEnumerable<Service> Services { get; }
+        void SaveService(Service service);
+        Service DeleteService(int serviceId);
     }
 }

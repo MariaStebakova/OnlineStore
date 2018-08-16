@@ -16,5 +16,39 @@ namespace OnlineStore.DataProvider.DataContext
         {
             get { return context.Services; }
         }
+
+        public void SaveService(Service service)
+        {
+            if (service.ServiceId == 0)
+                context.Services.Add(service);
+            else
+            {
+                Service dbEntry = context.Services.Find(service.ServiceId);
+                if (dbEntry != null)
+                {
+                    dbEntry.Name = service.Name;
+                    dbEntry.Description = service.Description;
+                    dbEntry.Price = service.Price;
+                    dbEntry.ServiceType = service.ServiceType;
+                    dbEntry.ImageData = service.ImageData;
+                    dbEntry.ImageMimeType = service.ImageMimeType;
+                }
+            }
+            context.SaveChanges();
+        }
+
+        public Service DeleteService(int serviceId)
+        {
+            Service dbEntry = context.Services.Find(serviceId);
+            if (dbEntry != null)
+            {
+                context.Services.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
+
+        
+        
     }
 }

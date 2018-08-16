@@ -1,6 +1,16 @@
 ﻿@model OnlineStore.Model.Service
 
-<div class="well">
+<div class="panel panel-default">
+<div class="panel-body">
+	@if (Model.ImageData != null)
+	{
+		<div class="pull-left" style="margin-right: 10px">
+			<img class="img-thumbnail" width="75" height="75"
+			     src="@Url.Action("GetImage", "Service",
+				          new {Model.ServiceId})"/>
+		</div>
+	}
+
 	<h3>
 		<strong>@Model.Name</strong>
 		<span class="pull-right label label-primary">@Model.Price.ToString("# руб")</span>
@@ -10,8 +20,9 @@
 		<div class="pull-right">
 			@Html.HiddenFor(x => Model.ServiceId)
 			@Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-			<input type="submit" class="btn btn-success" value="Добавить в корзину" />
+			<input type="submit" class="btn btn-success" value="Добавить в корзину"/>
 		</div>
 	}
 	<span class="lead">@Model.Description</span>
+</div>
 </div>

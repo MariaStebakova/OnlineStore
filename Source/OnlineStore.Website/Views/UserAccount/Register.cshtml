@@ -1,0 +1,66 @@
+﻿@model OnlineStore.Model.RegisterModel
+
+@{
+	Layout = null;
+	ViewBag.Title = "Register";
+}
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+</head>
+<div class="navbar navbar-inverse" role="navigation">
+
+<a class="navbar-brand" href="#">OnlineStore - интернет-магазин услуг</a>
+</div>
+<h2>Регистрация</h2>
+
+
+@using (Html.BeginForm())
+{
+	@Html.AntiForgeryToken()
+
+	<div>
+		<h4>Регистрация пользователя</h4>
+		<hr />
+		@Html.ValidationSummary(false)
+
+		<div>
+			Электронный адрес
+			<div>
+				@Html.EditorFor(model => model.Email)
+			</div>
+		</div>
+
+		<div>
+			Год рождения
+			<div>
+				@Html.EditorFor(model => model.Year)
+			</div>
+		</div>
+
+		<div>
+			Пароль
+			<div>
+				@Html.EditorFor(model => model.Password)
+			</div>
+		</div>
+
+		<div>
+			Подтвердить пароль
+			<div>
+				@Html.EditorFor(model => model.PasswordConfirm)
+			</div>
+		</div>
+
+		<div>
+			<div>
+				<input type="submit" value="Зарегистрировать" />
+			</div>
+		</div>
+	</div>
+}
+
+

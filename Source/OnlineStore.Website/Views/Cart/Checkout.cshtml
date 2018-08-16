@@ -10,6 +10,7 @@
 
 @using (Html.BeginForm())
 {
+	@Html.ValidationSummary();
 	<h3>Данные</h3>
 	<div class="form-group">
 		<label>Ваше имя:</label>
@@ -25,14 +26,6 @@
 			</div>
 		}
 	}
-
-	<h3>Опции</h3>
-	<div class="checkbox">
-		<label>
-			@Html.EditorFor(x => x.GiftWrap)
-			Использовать подарочную упаковку?
-		</label>
-	</div>
 
 	<div class="text-center">
 		<input class="btn btn-primary" type="submit" value="Обработать заказ" />

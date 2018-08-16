@@ -32,6 +32,8 @@ namespace OnlineStore.Website.Controllers
                     .Take(pageSize),
                 PagingInfo = new PagingInfo
                 {
+                    CurrentPage = page,
+                    ItemsPerPage = pageSize,
                     TotalItems = category == null ?
                     repository.Services.Count() :
                     repository.Services.Where(service => service.ServiceType == category).Count()
@@ -39,6 +41,20 @@ namespace OnlineStore.Website.Controllers
                 CurrentCategory = category
             };
             return View(model);
+        }
+
+        public FileContentResult GetImage(int serviceId)
+        {
+            Service service = repository.Services.FirstOrDefault(s => s.ServiceId == serviceId);
+
+            if (service != null)
+            {
+                return File(service.ImageData, service.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

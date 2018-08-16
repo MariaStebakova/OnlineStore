@@ -40,7 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EmailOrderProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OnlineStore.DataProvider\OnlineStore.DataProvider.csproj">
+      <Project>{257d4f34-f8e2-44f7-a00c-ae89224b2529}</Project>
+      <Name>OnlineStore.DataProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineStore.Model\OnlineStore.Model.csproj">
+      <Project>{880fb60d-55e8-4a1c-ae86-ded990c9a65f}</Project>
+      <Name>OnlineStore.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
