@@ -15,14 +15,19 @@ namespace OnlineStore.Website.Controllers
 {
     public class UserAccountController : Controller
     {
-        private ApplicationUserManager UserManager
+        private readonly ApplicationUserManager _userManager;
+        private readonly ApplicationSignInManager _signInManager;
+        private readonly IAuthenticationManager _authenticationManager;
+
+        public UserAccountController(/*ApplicationUserManager userManager, ApplicationSignInManager signInManager,
+            IAuthenticationManager authenticationManager*/)
         {
-            get
-            {
-                return HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
+            /*_userManager = userManager;
+            _signInManager = signInManager;
+            _authenticationManager = authenticationManager;*/
         }
 
+        
         public ActionResult Register()
         {
             return View();
@@ -34,9 +39,10 @@ namespace OnlineStore.Website.Controllers
             if (ModelState.IsValid)
             {
                 ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email, Year = model.Year };
-                IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Login", "UserAccount");
                 }
                 else
@@ -48,14 +54,6 @@ namespace OnlineStore.Website.Controllers
                 }
             }
             return View(model);
-        }
-
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
         }
 
         public ActionResult Login(string returnUrl)
@@ -70,17 +68,17 @@ namespace OnlineStore.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = await UserManager.FindAsync(model.Email, model.Password);
+                ApplicationUser user = await _userManager.FindAsync(model.Email, model.Password);
                 if (user == null)
                 {
                     ModelState.AddModelError("", "Неверный логин или пароль.");
                 }
                 else
                 {
-                    ClaimsIdentity claim = await UserManager.CreateIdentityAsync(user,
+                    ClaimsIdentity claim = await _userManager.CreateIdentityAsync(user,
                         DefaultAuthenticationTypes.ApplicationCookie);
-                    AuthenticationManager.SignOut();
-                    AuthenticationManager.SignIn(new AuthenticationProperties
+                    _authenticationManager.SignOut();
+                    _authenticationManager.SignIn(new AuthenticationProperties
                     {
                         IsPersistent = true
                     }, claim);
@@ -93,9 +91,12 @@ namespace OnlineStore.Website.Controllers
             ViewBag.returnUrl = returnUrl;
             return View(model);
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Logout()
         {
-            AuthenticationManager.SignOut();
+            _authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Login");
         }
     }

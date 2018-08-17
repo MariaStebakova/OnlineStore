@@ -10,7 +10,7 @@ namespace OnlineStore.DataProvider.DataContext
 {
     public class EFServiceRepository: IServiceRepository
     {
-        EFDbContext context = new EFDbContext();
+        ApplicationContext context = new ApplicationContext();
 
         public IEnumerable<Service> Services
         {

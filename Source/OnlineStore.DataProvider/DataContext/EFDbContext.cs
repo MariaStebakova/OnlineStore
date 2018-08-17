@@ -8,8 +8,8 @@ using OnlineStore.Model;
 
 namespace OnlineStore.DataProvider.DataContext
 {
-    public class EFDbContext: DbContext
+   /* public class EFDbContext: DbContext
     {
         public DbSet<Service> Services { get; set; }
-    }
+    }*/
 }

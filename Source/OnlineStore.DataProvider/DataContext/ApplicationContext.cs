@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 using OnlineStore.Model;
 
-public class ApplicationContext : IdentityDbContext<ApplicationUser>
+namespace OnlineStore.DataProvider.DataContext
 {
-    public ApplicationContext() : base("IdentityDb") { }
-
-    public static ApplicationContext Create()
+    public class ApplicationContext : IdentityDbContext<ApplicationUser>
     {
-        return new ApplicationContext();
+        public ApplicationContext() : base("DefaultConnection") { }
+
+        public DbSet<Service> Services { get; set; }
     }
 }
+
