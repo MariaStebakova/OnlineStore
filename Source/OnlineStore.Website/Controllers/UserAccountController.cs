@@ -19,12 +19,12 @@ namespace OnlineStore.Website.Controllers
         private readonly ApplicationSignInManager _signInManager;
         private readonly IAuthenticationManager _authenticationManager;
 
-        public UserAccountController(/*ApplicationUserManager userManager, ApplicationSignInManager signInManager,
-            IAuthenticationManager authenticationManager*/)
+        public UserAccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager,
+            IAuthenticationManager authenticationManager)
         {
-            /*_userManager = userManager;
+            _userManager = userManager;
             _signInManager = signInManager;
-            _authenticationManager = authenticationManager;*/
+            _authenticationManager = authenticationManager;
         }
 
         

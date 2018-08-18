@@ -4,12 +4,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using OnlineStore.Model;
 
 namespace OnlineStore.DataProvider.DataContext
 {
-   /* public class EFDbContext: DbContext
+    public class DbInitializer : DropCreateDatabaseIfModelChanges<ApplicationContext>
     {
-        public DbSet<Service> Services { get; set; }
-    }*/
+        protected override void Seed(ApplicationContext db)
+        {
+            base.Seed(db);
+        }
+    }
 }

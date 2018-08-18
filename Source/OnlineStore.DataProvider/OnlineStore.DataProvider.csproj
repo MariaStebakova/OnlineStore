@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataContext\ApplicationContext.cs" />
-    <Compile Include="DataContext\EFDbContext.cs" />
+    <Compile Include="DataContext\DbInitializer.cs" />
     <Compile Include="DataContext\EFServiceRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IOrderProcessor.cs" />

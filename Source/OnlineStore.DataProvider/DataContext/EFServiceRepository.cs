@@ -10,11 +10,16 @@ namespace OnlineStore.DataProvider.DataContext
 {
     public class EFServiceRepository: IServiceRepository
     {
-        ApplicationContext context = new ApplicationContext();
+        private ApplicationContext context;
+
+        public EFServiceRepository(ApplicationContext db)
+        {
+            context = db;
+        }
 
         public IEnumerable<Service> Services
         {
-            get { return context.Services; }
+            get { return context.Services.ToList(); }
         }
 
         public void SaveService(Service service)
@@ -48,7 +53,8 @@ namespace OnlineStore.DataProvider.DataContext
             return dbEntry;
         }
 
-        
-        
+
+
+
     }
 }
