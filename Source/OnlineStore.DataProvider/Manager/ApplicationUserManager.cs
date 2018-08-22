@@ -9,7 +9,7 @@ using Microsoft.Owin;
 using OnlineStore.DataProvider.DataContext;
 using OnlineStore.Model;
 
-namespace OnlineStore.Website.Models
+namespace OnlineStore.DataProvider.Manager
 {
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {

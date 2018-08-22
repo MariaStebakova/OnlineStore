@@ -1,0 +1,100 @@
+﻿@{
+	Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Главная</title>
+	<link rel="stylesheet" href="~/Content/bootstrap1.css">
+	<link rel="stylesheet" href="~/Content/font-awesome.min.css">
+	<link rel="stylesheet" href="~/Content/main.css">
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">ONLINE-Z<i class="fa fa-circle"></i><i class="fa fa-circle"></i>SHOP</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li class="active"><a href='@Url.Action("List", "Service")'>Вход</a></li>
+					<li class="active"><a href='@Url.Action("Register", "UserAccount")'>Регистрация</a></li>
+					<li class="active"><a href='@Url.Action("Index", "Admin")'>Админ</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div id="headerwrap">
+		<div class="container">
+			<div class="row centered">
+				<div class="col-lg-8 col-lg-offset-2">
+					<h1>Добро пожаловать</h1>
+					<h2>в интернет-зоомагазин</h2>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container w">
+		<div class="row centered">
+			<br /><br />
+			<div class="col-lg-4">
+				<a href='@Url.Action("Register", "UserAccount")'>
+					<i class="fa fa-address-book"></i>
+				</a>
+				<h4>Регистрация</h4>
+				<p>Перед началом работы, пожалуйста, зарегистрируйтесь</p>
+			</div>
+			<div class="col-lg-4">
+				<a href='@Url.Action("List", "Service")'>
+					<i class="fa fa-sign-in"></i>
+				</a>
+				<h4>Авторизация</h4>
+				<p>Если вы уже зарегистрированы, пожалуйста, авторизируйтесь</p>
+			</div>
+			<div class="col-lg-4">
+				<a href='@Url.Action("Index", "Admin")'>
+					<i class="fa fa-lock"></i>
+				</a>
+				<h4>Администратор</h4>
+				<p>Если вы являетесь администратором этого сайта, пожалуйста,
+				авторизируйтесь для доступа к админ-панели</p>
+			</div>
+			<br /><br />
+		</div>
+	</div>
+	<hr />
+	<div class="container">
+		<div class="row centered">
+			<br /><br />
+			<div class="col-lg-8 col-lg-offset-2">
+				<h4>Информация о проекте</h4>
+				<p>Данный сайт создан в рамках .NET-стажировки в компании Sam-Solution</p>
+				<p><br /><br /></p>
+			</div>
+		</div>
+	</div>
+	<div id="f">
+		<div class="container">
+			<div class="row centered">
+				<a href="https://vk.com/id110630011"><i class="fa fa-vk"></i></a>
+				<a href="tel:+375295713340"><i class="fa fa-phone"></i></a>
+				<a href="mailto:stebakova1998@gmail.com"><i class="fa fa-envelope"></i></a>
+			</div>
+		</div>
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="~/Scripts/bootstrap1.min.js"></script>
+</body>
+
+</html>

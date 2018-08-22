@@ -1,29 +1,70 @@
-﻿@model OnlineStore.Model.LoginModel
+﻿
+@model OnlineStore.Model.LoginModel
  
 @{
 	Layout = null;
 	ViewBag.Title = "Login";
 }
- 
-<h2>Вход на сайт</h2>
- 
- 
-@using (Html.BeginForm()) 
-{
-	@Html.AntiForgeryToken()
-     
-	<div>
-		@Html.ValidationSummary()
-		<input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
-		<p>
-			<label>Email</label><br />
-			@Html.EditorFor(x => x.Email)
-		</p>
-		<p>
-			<label>Пароль</label><br />
-			@Html.EditorFor(x => x.Password)
-		</p>
-		<p><button type="submit">Войти</button></p>
-	</div>
-}
 
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="~/Content/bootstrap.css" rel="stylesheet" />
+	<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+	<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+	<link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/Content/font-awesome.min.css">
+	<link rel="stylesheet" href="~/Content/main.css">
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			$("#iq").fadeIn("slow");
+		});
+	</script>
+	<title>@ViewBag.Title</title>
+</head>
+<body style="margin: 0; background: url(../images/background2.jpg) no-repeat center top">
+	<div class="navbar navbar-inverse" role="navigation">
+		<a class="navbar-brand" href="#">ONLINE-Z<i class="fa fa-circle"></i><i class="fa fa-circle"></i>SHOP</a>
+	</div>
+	<div class="iq col-md-5 centered" style="margin-left: 100px; margin-right: 400px; margin-top: 30px; padding: 30px; background-color: #FAEBD7; border: 4px groove #f85c37">
+		<h2>Login</h2>
+
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+			@Html.Hidden("UrlReferrer", ViewBag.UrlReferrer as string)
+
+			<div>
+				<hr />
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+				<div class="form-group">
+					@Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "col-form-label col-md-2" })
+					<div>
+						@Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-form-label col-md-2" })
+					<div>
+						@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+				<br />
+				<div class="form-group">
+					<div class="col-md-10">
+						<input type="submit" value="Login" class="btn btn-primary" />
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+
+
+</body>
+</html>

@@ -17,7 +17,7 @@ namespace OnlineStore.Website.Controllers
             repository = repo;
         }
 
-        public PartialViewResult Menu(string category/* = null*/)
+        public PartialViewResult Menu(string category = null)
         {
             ViewBag.SelectedCategory = category;
             IEnumerable<string> categories = repository.Services

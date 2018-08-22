@@ -1,56 +1,78 @@
-﻿@model OnlineStore.Model.RegisterModel
+﻿@using System.Web.Optimization
+@model OnlineStore.Model.RegisterModel
 
 @{
-	Layout = "~/Views/Shared/_Layout.cshtml";
+	Layout = null;
+
+
 	ViewBag.Title = "Register";
 }
 
-<h2>Регистрация</h2>
-
-
-@using (Html.BeginForm())
-{
-	@Html.AntiForgeryToken()
-
-	<div>
-		<h4>Регистрация пользователя</h4>
-		<hr />
-		@Html.ValidationSummary(false)
-
-		<div>
-			Электронный адрес
-			<div>
-				@Html.EditorFor(model => model.Email)
-			</div>
-		</div>
-
-		<div>
-			Год рождения
-			<div>
-				@Html.EditorFor(model => model.Year)
-			</div>
-		</div>
-
-		<div>
-			Пароль
-			<div>
-				@Html.EditorFor(model => model.Password)
-			</div>
-		</div>
-
-		<div>
-			Подтвердить пароль
-			<div>
-				@Html.EditorFor(model => model.PasswordConfirm)
-			</div>
-		</div>
-
-		<div>
-			<div>
-				<input type="submit" value="Зарегистрировать" />
-			</div>
-		</div>
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="~/Content/bootstrap.css" rel="stylesheet" />
+	<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+	<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+	<link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/Content/font-awesome.min.css">
+	<link rel="stylesheet" href="~/Content/main.css">
+	<title>@ViewBag.Title</title>
+</head>
+<body style="margin: 0; background: url(../images/background1.jpg) no-repeat center top">
+	<div class="navbar navbar-inverse" role="navigation">
+		<a class="navbar-brand" href="#">ONLINE-Z<i class="fa fa-circle"></i><i class="fa fa-circle"></i>SHOP</a>
 	</div>
-}
+	<div class="col-md-5 centered" style="margin-left: 700px; margin-right: 200px; margin-top: 30px; padding: 30px; background-color: #FAF0E6; border: 4px groove #f85c37">
+		<h2>Register</h2>
 
+		@using (Html.BeginForm())
+		{
+			@Html.AntiForgeryToken()
+			@Html.Hidden("UrlReferrer", ViewBag.UrlReferrer as string)
 
+			<div>
+				<hr />
+				@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+				<div class="form-group">
+					@Html.LabelFor(model => model.Login, htmlAttributes: new { @class = "col-form-label col-md-2" })
+					<div>
+						@Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "col-form-label col-md-2" })
+					<div>
+						@Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "col-form-label col-md-2" })
+					<div>
+						@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+					</div>
+				</div>
+				<div class="form-group">
+					@Html.LabelFor(model => model.PasswordConfirmed, htmlAttributes: new { @class = "col-form-label col-md-2" })
+					<div>
+						@Html.EditorFor(model => model.PasswordConfirmed, new { htmlAttributes = new { @class = "form-control" } })
+						@Html.ValidationMessageFor(model => model.PasswordConfirmed, "", new { @class = "text-danger" })
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-md-10">
+						<input type="submit" value="Register" class="btn btn-primary" />
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+
+</body>
+</html>

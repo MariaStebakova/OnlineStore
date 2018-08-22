@@ -1,5 +1,24 @@
 ﻿@{
-	ViewBag.Title = "Ошибка 404";
+	Layout = null;
 }
- 
-<h2>Ошибка 404. Ресурс не найден</h2>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>404 – страница не найдена</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="~/Content/bootstrap1.css">
+	<link rel="stylesheet" href="~/Content/main.css">
+</head>
+<body style="background: url(../images/404.jpg) no-repeat center top; background-size:cover; margin-top: 50px;">
+	<div class="container col-md-6 centered" style="margin: 150px; margin-left: 50px; font-weight:700">
+		<h1 style="font-weight: 700; font-size: 70px">404</h1>
+		<h2 style="font-weight: 700; font-size: 40px;">Страница не найдена</h2>
+		<br />
+		<h3>Не расстраивайтесь</h3>
+		<a href='@Url.Action("Index", "Home")'>Перейти к главной странице</a>
+	</div>
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</body>
+</html>

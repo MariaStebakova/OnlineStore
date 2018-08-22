@@ -9,19 +9,19 @@ namespace OnlineStore.Model
 {
     public class RegisterModel
     {
-        [Required]
+        [Required(ErrorMessage = "Необходимо ввести логин")]
+        public string Login { get; set; }
+
+        [EmailAddress(ErrorMessage = "Некорректный email")]
         public string Email { get; set; }
 
-        [Required]
-        public int Year { get; set; }
-
-        [Required]
+        [Required(ErrorMessage = "Необходимо ввести пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required]
         [Compare("Password", ErrorMessage = "Пароли не совпадают")]
         [DataType(DataType.Password)]
-        public string PasswordConfirm { get; set; }
+        public string PasswordConfirmed { get; set; }
     }
 }

@@ -9,10 +9,12 @@ namespace OnlineStore.Model
 {
     public class LoginModel
     {
-        [Required]
-        public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Неверный логин")]
+        public string Login { get; set; }
+
+        [Required(ErrorMessage = "Неверный пароль")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+
     }
 }

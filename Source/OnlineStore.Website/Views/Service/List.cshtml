@@ -6,13 +6,23 @@
 	ViewBag.Title = "Доступные товары";
 }
 
-@foreach (var p in @Model.Services)
-{
-	@Html.Partial("ServiceSummary", p)
-}
 
-<div class="btn-group pull-right">
-	@Html.PageLinks(Model.PagingInfo, x => Url.Action("List", 
-		new { page = x, category = Model.CurrentCategory }))
-</div>
+	<div class="row">
+		<form method="get" class="well form-inline">
+				<input type="text" name="searchString" placeholder="Search by Name" class="input-lg">
+				<input type="submit" value="Search" class="btn" />
+
+		</form>
+	</div>
+
+
+	@foreach (var p in @Model.Services)
+	{
+		@Html.Partial("ServiceSummary", p)
+	}
+
+	<div class="btn-group pull-right">
+		@Html.PageLinks(Model.PagingInfo, x => Url.Action("List",
+				new { page = x, category = Model.CurrentCategory }))
+	</div>
 

@@ -1,4 +1,4 @@
-﻿
+﻿@using System.Web.Optimization
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,46 +8,68 @@
 	<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
 	<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
 	<link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/Content/font-awesome.min.css">
+	<link rel="stylesheet" href="~/Content/main.css">
+	<!--@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/modernizr")
+	@Scripts.Render("~/bundles/bootstrap")-->
 	<title>@ViewBag.Title</title>
 </head>
 <body>
-	<div class="navbar navbar-inverse" role="navigation">
-
-		<a class="navbar-brand" href="#">OnlineStore - интернет-магазин услуг</a>
-		@Html.ActionLink("Выйти", "Logout", "UserAccount", null,
-			 new { @class = "btn btn-lg" })
-		@Html.ActionLink("Админ", "Login", "Account", null,
-			 new { @class = "btn btn-lg" })
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<a class="navbar-brand" href="#">ONLINE-Z<i class="fa fa-circle"></i><i class="fa fa-circle"></i>SHOP</a>
+			@if (Request.IsAuthenticated)
+	{
+		<div class="col-xs-1" style="margin: 12px 0 0 24px;">
+			<a href='@Url.Action("Logout", "UserAccount")'>
+				<i class="fa fa-sign-out fa-2x"></i>
+			</a>
+		</div>
+		<div class="col-xs-1" style="margin: 12px 0 0 0;">
+			<a href='@Url.Action("Index", "Admin")'>
+				<i class="fa fa-lock fa-2x"></i>
+			</a>
+		</div>
+		<div class="col-xs-1" style="margin: 12px 0 0 0;">
+			<a href='@Url.Action("Index", "Home")'>
+				<i class="fa fa-home fa-2x"></i>
+			</a>
+		</div>
 		@Html.Action("Summary", "Cart")
-	</div>
-
-<div class="navbar navbar-default" role="navigation">
-
-	<div class ="btn-group btn-group-justified">
-		@Html.Action("Menu", "Nav") 
-	
-	</div>
-</div>
-
-<div id="carousel" class="carousel slide" data-ride="carousel">
-	<div class="carousel-inner">
-		<div class="item active">
-			<img src="images/main1.jpg" alt="Главная1">
-			
+}
 		</div>
-		<div class="item">
-			<img src="images/main2.jpg" alt="Главная2">
 		</div>
-		<div class="item">
-			<img src="images/main3.jpg" alt="Главная3">
-		</div>
-	</div>
-</div>>
+	@if (Request.IsAuthenticated)
+	{
+		<div class="navbar navbar-default" role="navigation" style="padding-bottom:3px;">
 
+			<div class="btn-group btn-group-justified">
+				@Html.Action("Menu", "Nav")
 
-<div class="col-xs-8 center-block">
-				@RenderBody()
 			</div>
+		</div>
 
+		<!--	<div id="carousel" class="carousel slide" data-ride="carousel">
+				<div class="carousel-inner">
+					<div class="item active">
+						<img src="images/main1.jpg" alt="Главная1">
+
+					</div>
+					<div class="item">
+						<img src="images/main2.jpg" alt="Главная2">
+					</div>
+					<div class="item">
+						<img src="images/main3.jpg" alt="Главная3">
+					</div>
+				</div>
+			</div>  -->
+
+
+		<div class="col-xs-12 center-block">
+			@RenderBody()
+		</div>
+	}
 </body>
 </html>

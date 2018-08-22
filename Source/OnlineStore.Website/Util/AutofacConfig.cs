@@ -9,6 +9,7 @@ using Autofac.Integration.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 using OnlineStore.DataProvider.DataContext;
+using OnlineStore.DataProvider.Manager;
 using OnlineStore.DataProvider.Repositories;
 using OnlineStore.Logic;
 using OnlineStore.Model;
@@ -24,7 +25,7 @@ namespace OnlineStore.Website.Util
         public static void ConfigureContainer()
         {
             var builder = new ContainerBuilder();
-            builder.RegisterControllers(typeof(AccountController).Assembly).InstancePerRequest();
+            builder.RegisterControllers(typeof(AccountController).Assembly);
 
             builder.RegisterType<ApplicationContext>().AsSelf().InstancePerRequest();
             builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();

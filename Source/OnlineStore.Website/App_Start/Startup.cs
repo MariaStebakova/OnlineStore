@@ -8,14 +8,13 @@ using Microsoft.Owin.Security.Cookies;
 using OnlineStore.Website.Models;
 using Owin;
 
-namespace OnlineStore.Website.App_Start
+[assembly: OwinStartup(typeof(OnlineStore.Website.Startup))]
+namespace OnlineStore.Website
 {
     public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
-            
-            //app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,

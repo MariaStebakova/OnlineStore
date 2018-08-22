@@ -9,7 +9,7 @@ using OnlineStore.Model;
 
 namespace OnlineStore.Website.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         IServiceRepository repository;
@@ -42,7 +42,7 @@ namespace OnlineStore.Website.Controllers
             if (ModelState.IsValid)
             {
                 repository.SaveService(service);
-                TempData["message"] = string.Format("Изменения в игре \"{0}\" были сохранены", service.Name);
+                TempData["message"] = string.Format("Изменения товара \"{0}\" были сохранены", service.Name);
                 return RedirectToAction("Index");
             }
             else

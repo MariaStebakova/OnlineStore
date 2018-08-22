@@ -8,10 +8,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using OnlineStore.Model;
 
-namespace OnlineStore.Website.Models
+namespace OnlineStore.DataProvider.Manager
 {
 
-    public class ApplicationSignInManager: SignInManager<ApplicationUser, string>
+    public class ApplicationSignInManager : SignInManager<ApplicationUser, string>
     {
         public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)

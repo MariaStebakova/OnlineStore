@@ -10,12 +10,22 @@
 	<link href="~/Content/bootstrap.css" rel="stylesheet" />
 	<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
 	<link href="~/Content/ErrorStyles.css" rel="stylesheet" />
+	<link href="~/Content/main.css" rel="stylesheet" />
+	<link rel="stylesheet" href="~/Content/font-awesome.min.css">
 	<script src="~/Scripts/jquery-1.9.1.js"></script>
 	<script src="~/Scripts/jquery.validate.js"></script>
 	<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
 	<title></title>
 </head>
-<body>
+
+<body style="margin-top:0;">
+	<div class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href='@Url.Action("List", "Service")'>ONLINE-Z<i class="fa fa-circle"></i><i class="fa fa-circle"></i>SHOP</a>
+			</div>
+		</div>
+	</div>
 	<div>
 		@if (TempData["message"] != null)
 		{
@@ -23,5 +33,6 @@
 		}
 		@RenderBody()
 	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </body>
 </html>

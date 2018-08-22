@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using OnlineStore.DataProvider.Manager;
 using OnlineStore.Model;
 using OnlineStore.Website.Models;
 
@@ -33,16 +34,18 @@ namespace OnlineStore.Website.Controllers
             return View();
         }
 
+
         [HttpPost]
         public async Task<ActionResult> Register(RegisterModel model)
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = new ApplicationUser { UserName = model.Email, Email = model.Email, Year = model.Year };
+                ApplicationUser user = new ApplicationUser { UserName = model.Login, Email = model.Email };
                 IdentityResult result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    //await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    _userManager.AddToRole(user.Id, "user");
+                    await _signInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Login", "UserAccount");
                 }
                 else
@@ -68,7 +71,7 @@ namespace OnlineStore.Website.Controllers
         {
             if (ModelState.IsValid)
             {
-                ApplicationUser user = await _userManager.FindAsync(model.Email, model.Password);
+                ApplicationUser user = await _userManager.FindAsync(model.Login, model.Password);
                 if (user == null)
                 {
                     ModelState.AddModelError("", "Неверный логин или пароль.");
@@ -83,8 +86,7 @@ namespace OnlineStore.Website.Controllers
                         IsPersistent = true
                     }, claim);
                     if (String.IsNullOrEmpty(returnUrl))
-                        //return RedirectToAction("List", "Service");
-                        return View("~/Views/Shared/_Layout.cshtml");
+                        return RedirectToAction("List", "Service");
                     return Redirect(returnUrl);
                 }
             }
@@ -92,12 +94,12 @@ namespace OnlineStore.Website.Controllers
             return View(model);
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
         public ActionResult Logout()
         {
             _authenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Login");
+            return RedirectToAction("Index", "Home");
         }
     }
 }

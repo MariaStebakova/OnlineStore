@@ -13,15 +13,15 @@ namespace OnlineStore.Logic
 
     public class EmailSettings
     {
-        public string MailToAddress = "orders@example.com";
-        public string MailFromAddress = "gamestore@example.com";
+        public string MailToAddress = "stebakova1964@mail.ru";
+        public string MailFromAddress = "coursework3@mail.ru";
         public bool UseSsl = true;
-        public string Username = "MySmtpUsername";
-        public string Password = "MySmtpPassword";
-        public string ServerName = "smtp.example.com";
+        public string Username = "coursework3@mail.ru";
+        public string Password = "kursovayarabota2018";
+        public string ServerName = "smtp.mail.ru";
         public int ServerPort = 587;
         public bool WriteAsFile = true;
-        public string FileLocation = @"c:\game_store_emails";
+        public string FileLocation = @"d:\Стажировка\game_store_emails";
     }
 
     public class EmailOrderProcessor : IOrderProcessor
@@ -84,7 +84,7 @@ namespace OnlineStore.Logic
                     mailMessage.BodyEncoding = Encoding.UTF8;
                 }
 
-//               smtpClient.Send(mailMessage);
+               smtpClient.Send(mailMessage);
             }
         }
     }

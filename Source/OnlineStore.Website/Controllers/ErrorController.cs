@@ -11,13 +11,13 @@ namespace OnlineStore.Website.Controllers
         public ActionResult NotFound()
         {
             Response.StatusCode = 404;
-            return View();
+            return View("~/Views/Error/NotFound.cshtml");
         }
 
-        public ActionResult Forbidden()
+        public ActionResult InternalServerError()
         {
-            Response.StatusCode = 403;
-            return View();
+            Response.StatusCode = 500;
+            return View("~/Views/Error/InternalServerError.cshtml");
         }
     }
 }
